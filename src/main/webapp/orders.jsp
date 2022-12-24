@@ -47,10 +47,8 @@
         </tr>
         </thead>
         <tbody>
-
-        <%
-            if(orders != null){
-                for(Order order:orders){%>
+        <%if(orders != null){
+                for(Order order:orders){ %>
         <tr>
             <td><%=order.getDate() %></td>
             <td><%=order.getName() %></td>
@@ -60,8 +58,7 @@
             <td><a class="btn btn-sm btn-danger" href="cancel-order?id=<%=order.getOrderId()%>">Cancel Order</a></td>
         </tr>
         <%}
-        }
-        %>
+        }%>
         </tbody>
     </table>
 </div>

@@ -88,6 +88,13 @@
       <recent name="ge.tsu.shoppingcartproject.servlets" />
     </key>
   </component>
+  <component name="RunDashboard">
+    <option name="excludedTypes">
+      <set>
+        <option value="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory" />
+      </set>
+    </option>
+  </component>
   <component name="RunManager" selected="Tomcat Server.Tomcat 10.0.271">
     <configuration name="DataBaseConnection" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="ge.tsu.shoppingcartproject.connection.DataBaseConnection" />

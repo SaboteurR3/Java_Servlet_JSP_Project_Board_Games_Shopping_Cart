@@ -26,7 +26,6 @@ public class OrderNowServlet extends HttpServlet {
         try (PrintWriter out = response.getWriter()) {
             SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
             Date date = new Date();
-
             User auth = (User) request.getSession().getAttribute("auth");
 
             if (auth != null) {
@@ -65,7 +64,7 @@ public class OrderNowServlet extends HttpServlet {
         }
     }
 
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
         doGet(request, response);
     }
 }

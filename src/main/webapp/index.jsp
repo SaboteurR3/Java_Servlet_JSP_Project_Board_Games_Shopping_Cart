@@ -88,7 +88,7 @@
         <%
                 }
             } else {
-                out.println("There is no products");
+                out.println("There is no product");
             }
         %>
 

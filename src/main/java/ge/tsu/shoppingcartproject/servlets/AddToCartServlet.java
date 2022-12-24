@@ -21,26 +21,25 @@ public class AddToCartServlet extends HttpServlet {
         try (PrintWriter out = response.getWriter()) {
             ArrayList<Cart> cartList = new ArrayList<>();
             int id = Integer.parseInt(request.getParameter("id"));
-            Cart cm = new Cart();
-            cm.setId(id);
-            cm.setQuantity(1);
+            Cart item = new Cart();
+            item.setId(id);
+            item.setQuantity(1);
             HttpSession session = request.getSession();
             ArrayList<Cart> cart_list = (ArrayList<Cart>) session.getAttribute("cart-list");
             if (cart_list == null) {
-                cartList.add(cm);
+                cartList.add(item);
                 session.setAttribute("cart-list", cartList);
                 response.sendRedirect("index.jsp");
             } else {
                 cartList = cart_list;
-
                 boolean exist = false;
-                for (Cart c : cart_list) {
-                    if (c.getId() == id) {
+                for (Cart itemInCart : cart_list) {
+                    if (itemInCart.getId() == id) {
                         exist = true;
                         response.sendRedirect("exists.jsp");                    }
                 }
                 if (!exist) {
-                    cartList.add(cm);
+                    cartList.add(item);
                     response.sendRedirect("index.jsp");
                 }
             }

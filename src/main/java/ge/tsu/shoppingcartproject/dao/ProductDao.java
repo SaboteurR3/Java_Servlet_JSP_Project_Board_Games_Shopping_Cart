@@ -7,16 +7,16 @@ import ge.tsu.shoppingcartproject.model.Cart;
 import ge.tsu.shoppingcartproject.model.Product;
 
 public class ProductDao {
-    private Connection con;
+    private Connection connection;
 
     private String query;
-    private PreparedStatement pst;
-    private ResultSet rs;
+    private PreparedStatement statement;
+    private ResultSet result;
 
 
-    public ProductDao(Connection con) {
+    public ProductDao(Connection connection) {
         super();
-        this.con = con;
+        this.connection = connection;
     }
 
 
@@ -24,16 +24,16 @@ public class ProductDao {
         List<Product> book = new ArrayList<>();
         try {
             query = "select * from products";
-            pst = this.con.prepareStatement(query);
-            rs = pst.executeQuery();
+            statement = this.connection.prepareStatement(query);
+            result = statement.executeQuery();
 
-            while (rs.next()) {
+            while (result.next()) {
                 Product row = new Product();
-                row.setId(rs.getInt("id"));
-                row.setName(rs.getString("name"));
-                row.setComplexity(rs.getString("complexity"));
-                row.setPrice(rs.getDouble("price"));
-                row.setImage(rs.getString("image"));
+                row.setId(result.getInt("id"));
+                row.setName(result.getString("name"));
+                row.setComplexity(result.getString("complexity"));
+                row.setPrice(result.getDouble("price"));
+                row.setImage(result.getString("image"));
 
                 book.add(row);
             }
@@ -51,17 +51,17 @@ public class ProductDao {
         try {
             query = "select * from products where id=? ";
 
-            pst = this.con.prepareStatement(query);
-            pst.setInt(1, id);
-            ResultSet rs = pst.executeQuery();
+            statement = this.connection.prepareStatement(query);
+            statement.setInt(1, id);
+            ResultSet result = statement.executeQuery();
 
-            while (rs.next()) {
+            while (result.next()) {
                 row = new Product();
-                row.setId(rs.getInt("id"));
-                row.setName(rs.getString("name"));
-                row.setComplexity(rs.getString("complexity"));
-                row.setPrice(rs.getDouble("price"));
-                row.setImage(rs.getString("image"));
+                row.setId(result.getInt("id"));
+                row.setName(result.getString("name"));
+                row.setComplexity(result.getString("complexity"));
+                row.setPrice(result.getDouble("price"));
+                row.setImage(result.getString("image"));
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -77,11 +77,11 @@ public class ProductDao {
             if (cartList.size() > 0) {
                 for (Cart item : cartList) {
                     query = "select price from products where id=?";
-                    pst = this.con.prepareStatement(query);
-                    pst.setInt(1, item.getId());
-                    rs = pst.executeQuery();
-                    while (rs.next()) {
-                        sum+=rs.getDouble("price")*item.getQuantity();
+                    statement = this.connection.prepareStatement(query);
+                    statement.setInt(1, item.getId());
+                    result = statement.executeQuery();
+                    while (result.next()) {
+                        sum += result.getDouble("price") * item.getQuantity();
                     }
 
                 }
@@ -101,15 +101,15 @@ public class ProductDao {
             if (cartList.size() > 0) {
                 for (Cart item : cartList) {
                     query = "select * from products where id=?";
-                    pst = this.con.prepareStatement(query);
-                    pst.setInt(1, item.getId());
-                    rs = pst.executeQuery();
-                    while (rs.next()) {
+                    statement = this.connection.prepareStatement(query);
+                    statement.setInt(1, item.getId());
+                    result = statement.executeQuery();
+                    while (result.next()) {
                         Cart row = new Cart();
-                        row.setId(rs.getInt("id"));
-                        row.setName(rs.getString("name"));
-                        row.setComplexity(rs.getString("complexity"));
-                        row.setPrice(rs.getDouble("price")*item.getQuantity());
+                        row.setId(result.getInt("id"));
+                        row.setName(result.getString("name"));
+                        row.setComplexity(result.getString("complexity"));
+                        row.setPrice(result.getDouble("price")*item.getQuantity());
                         row.setQuantity(item.getQuantity());
                         book.add(row);
                     }

@@ -12,8 +12,7 @@ import java.io.PrintWriter;
 @WebServlet("/user-error")
 public class ErrorServlet extends HttpServlet {
 
-    protected void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws IOException {
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
             response.sendRedirect("error.jsp");

@@ -36,7 +36,6 @@ public class SignUpServlet extends HttpServlet {
                 thread.sleep(2000);
                 response.sendRedirect("error.jsp");
             }
-            out.println("You have registered successfully!");
 
         } catch (InterruptedException | SQLException | ClassNotFoundException e) {
             throw new RuntimeException(e);
